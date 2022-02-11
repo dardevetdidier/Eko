@@ -15,18 +15,17 @@ class Category(models.Model):
 class Deposit(models.Model):
     description = models.CharField(max_length=150)
     amount = models.FloatField()
-    date_created = models.DateTimeField(auto_now_add=True)
-    category = models.ForeignKey(to=Category, on_delete=models.CASCADE)
+    date_created = models.DateTimeField()
 
     def __str__(self):
         return f"Deposit: {self.amount} : {self.date_created}"
 
 
-
 class Withdraw(models.Model):
     description = models.CharField(max_length=150)
     amount = models.FloatField()
-    date_created = models.DateTimeField(auto_now_add=True)
+    category = models.ForeignKey(to=Category, on_delete=models.CASCADE)
+    date_created = models.DateField()
 
     def __str__(self):
         return f"Withdraw: {self.amount} : {self.date_created}"

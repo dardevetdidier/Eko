@@ -1,0 +1,7 @@
+.content {
+    display: flex;
+    width: 25em;
+    justify-content: center;
+    margin: 10em auto;
+}
+
