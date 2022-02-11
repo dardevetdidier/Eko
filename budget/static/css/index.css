@@ -1,7 +1,48 @@
-.content {
-    display: flex;
-    width: 25em;
-    justify-content: center;
-    margin: 10em auto;
+html {
+    background-color: #212121;
 }
+
+.log{
+    background-color: #212121;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #181818;
+    margin: 5em auto;
+    padding: 0 3em;
+    width: 25em;
+    border-radius: 20px;
+}
+
+.login-title {
+    color: grey;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+.log-form {
+    width: 100%;
+    text-align: center;
+}
+.form-control:focus {
+        border-color: #fff;
+        box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 1);
+    }
+.log-form button {
+    width: 50%;
+    margin-top: 1.5em;
+    margin-bottom: 2em;
+}
+.error-message {
+    width: 100%;
+    color: red;
+}
+
+.error-message p {
+    font-size: 0.8em;
+}
+
 

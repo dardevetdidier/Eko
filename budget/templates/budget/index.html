@@ -1,27 +1,39 @@
 {% extends 'base.html' %}
-{% load static %}
-
-{% block style %}
-    <link rel="stylesheet" href="{% static 'css/index.css' %}">{% endblock %}
 
 {% block title %}Login{% endblock %}
 
 
 {% block content %}
-    <div class="content">
+
+    <div class="log">
+
         <div class="container">
-            <form method="POST">
-                {% csrf_token %}
-                <div class="mb-3">
-                    {{ form.username }}
-                </div>
+            <h2 class="login-title">Se Connecter</h2>
+            <div class="log-form">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        {{ form.username }}
+                    </div>
 
-                <div class="mb-3">
-                    {{ form.password }}
-                </div>
+                    <div class="mb-3">
+                        {{ form.password }}
+                    </div>
 
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+                    <button type="submit" class="btn btn-outline-light">Submit</button>
+                </form>
+
+            </div>
+
+            {% if messages %}
+                <div class="error-message mt-3">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+
         </div>
     </div>
 {% endblock %}
