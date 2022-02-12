@@ -1,6 +1,14 @@
 html {
     background-color: #212121;
 }
+body {
+    margin: 0;
+    background-color: #212121;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+h1 {
+    color: chocolate;
+}
 
 .log{
     background-color: #212121;
@@ -37,12 +45,36 @@ html {
     margin-bottom: 2em;
 }
 .error-message {
+    text-align: center;
     width: 100%;
     color: red;
 }
 
 .error-message p {
     font-size: 0.8em;
+}
+
+/* NAV BAR */
+
+.nav-content {
+    background-color: #181818;
+}
+.nav-fluid {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 48%;
+
+    padding-left: 0;
+    padding-right: 3em;
+}
+
+.navbar-brand {
+    color: chocolate;
+    font-size: 3em;
+}
+.nav-content i {
+    font-size: 3em;
+    color: chocolate;
 }
 
 
