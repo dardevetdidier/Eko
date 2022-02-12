@@ -14,7 +14,7 @@ h1 {
     background-color: #212121;
 }
 
-.container {
+.login-container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -69,6 +69,11 @@ h1 {
 .navbar-brand {
     color: chocolate;
     font-size: 3em;
+    font-weight: bold;
+}
+
+.navbar-brand:hover {
+    color: white;
 }
 
 .logout-link{

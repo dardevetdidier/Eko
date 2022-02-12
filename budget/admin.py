@@ -20,3 +20,4 @@ class DepositAdmin(admin.ModelAdmin):
 @admin.register(Account)
 class DepositAdmin(admin.ModelAdmin):
     list_display = ['name', 'balance', 'owner']
+
