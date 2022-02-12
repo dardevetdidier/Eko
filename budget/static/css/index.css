@@ -117,7 +117,13 @@ h1 {
     justify-content: center;
 }
 
+.budget-card {
+    border: 1px solid #181818;
+    margin: 1em;
+
+}
 .budget-header{
+    background-color: chocolate;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -126,12 +132,16 @@ h1 {
 
 .budget-name, .budget-amount {
     margin: 0;
-    background-color: aqua;
     padding: 1em;
     font-size: 1.4em;
+    color: white;
 }
 
+.budget-card-body {
+    padding: 0;
+}
 .budget-table {
     font-size: 0.8em;
+    margin: 0;
 }
 
