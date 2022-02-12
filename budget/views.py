@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 
 from .forms import LoginForm
@@ -22,6 +22,15 @@ def index(request):
             messages.info(request, "Erreur dans le nom d'utilisateur et/ou le mot de passe")
 
     return render(request, 'budget/index.html', context={'form': login_form})
+
+
+def logout_user(request):
+    """
+    Logout user and return to login page
+
+    """
+    logout(request)
+    return redirect('index')
 
 
 def budget(request):
