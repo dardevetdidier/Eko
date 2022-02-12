@@ -12,8 +12,7 @@ class Category(models.Model):
         return self.name
 
 
-class Account(models.Model):
-    owner = models.ForeignKey(to=User, on_delete=models.CASCADE)
+class Budget(models.Model):
     name = models.CharField(max_length=150)
     balance = models.FloatField()
 
@@ -24,7 +23,7 @@ class Account(models.Model):
 class Deposit(models.Model):
     description = models.CharField(max_length=150)
     amount = models.FloatField()
-    account = models.ForeignKey(to=Account, on_delete=models.CASCADE)
+    account = models.ForeignKey(to=Budget, on_delete=models.CASCADE)
     date_created = models.DateTimeField()
 
     def __str__(self):
@@ -35,7 +34,7 @@ class Withdraw(models.Model):
     description = models.CharField(max_length=150)
     amount = models.FloatField()
     category = models.ForeignKey(to=Category, on_delete=models.CASCADE)
-    account = models.ForeignKey(to=Account, on_delete=models.CASCADE)
+    account = models.ForeignKey(to=Budget, on_delete=models.CASCADE)
     date_created = models.DateField()
 
     def __str__(self):

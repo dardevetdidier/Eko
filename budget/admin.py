@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Deposit, Withdraw, Account, Category
+from .models import Deposit, Withdraw, Budget, Category
 
 
 @admin.register(Deposit)
@@ -17,7 +17,7 @@ class DepositAdmin(admin.ModelAdmin):
     list_display = ['name']
 
 
-@admin.register(Account)
+@admin.register(Budget)
 class DepositAdmin(admin.ModelAdmin):
-    list_display = ['name', 'balance', 'owner']
+    list_display = ['name', 'balance']
 

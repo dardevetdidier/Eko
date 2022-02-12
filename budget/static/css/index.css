@@ -106,6 +106,32 @@ h1 {
     color: white;
 }
 
+/* BUDGET SNIPPET */
 
+.budgets-content {
+    padding: 2% 2%;
+}
 
+.budget-col {
+    display: flex;
+    justify-content: center;
+}
+
+.budget-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 5em;
+}
+
+.budget-name, .budget-amount {
+    margin: 0;
+    background-color: aqua;
+    padding: 1em;
+    font-size: 1.4em;
+}
+
+.budget-table {
+    font-size: 0.8em;
+}
 
