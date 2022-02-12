@@ -1,13 +1,8 @@
 from django.contrib import admin
-from .models import Deposit, Withdraw, Budget, Category
+from .models import Operation, Budget, Category
 
 
-@admin.register(Deposit)
-class DepositAdmin(admin.ModelAdmin):
-    list_display = ['description', 'amount', 'date_created']
-
-
-@admin.register(Withdraw)
+@admin.register(Operation)
 class DepositAdmin(admin.ModelAdmin):
     list_display = ['description', 'amount', 'category', 'date_created']
 

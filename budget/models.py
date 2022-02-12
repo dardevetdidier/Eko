@@ -20,17 +20,7 @@ class Budget(models.Model):
         return self.name
 
 
-class Deposit(models.Model):
-    description = models.CharField(max_length=150)
-    amount = models.FloatField()
-    account = models.ForeignKey(to=Budget, on_delete=models.CASCADE)
-    date_created = models.DateTimeField()
-
-    def __str__(self):
-        return f"Deposit: {self.amount} : {self.date_created}"
-
-
-class Withdraw(models.Model):
+class Operation(models.Model):
     description = models.CharField(max_length=150)
     amount = models.FloatField()
     category = models.ForeignKey(to=Category, on_delete=models.CASCADE)
