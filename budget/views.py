@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 
-from .forms import LoginForm, CreateAccountForm, DeleteForm
+from .forms import LoginForm, CreateAccountForm, DeleteForm, CreateOperationForm
 from .models import Account
 
 
@@ -77,3 +77,20 @@ def delete_account(request):
     context = {'delete_form': delete_form,
                'accounts': accounts}
     return render(request, 'budget/delete_account.html', context=context)
+
+
+def create_operation(request):
+    if request.method == 'POST':
+        create_operation_form = CreateOperationForm(request.POST)
+        if create_operation_form.is_valid():
+            operation = create_operation_form.save(commit=False)
+            account = get_object_or_404(Account, name=request.POST.get('name'))
+            operation.account = account
+            operation.save()
+    else:
+        create_operation_form = CreateOperationForm()
+
+    context = {
+        'create_operation_form': create_operation_form
+    }
+    return render(request, 'budget/dashboard.html', context=context)

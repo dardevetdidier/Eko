@@ -1,7 +1,7 @@
 from django import forms
 
 from django.contrib.auth.models import User
-from .models import Account
+from .models import Account, Operation
 
 
 class LoginForm(forms.ModelForm):
@@ -48,4 +48,26 @@ class DeleteForm(forms.ModelForm):
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control',
                                            'placeholder': 'Nom du compte à supprimer'})
+        }
+
+
+class CreateOperationForm(forms.ModelForm):
+    class Meta:
+        model = Operation
+        fields = [
+            'description',
+            'amount',
+            'category',
+            'account'
+        ]
+
+        widgets = {
+            'description': forms.TextInput(attrs={'class': 'form-control',
+                                                  'placeholder': 'Description'}),
+            'amount': forms.NumberInput(attrs={'class': 'form-control',
+                                               'placeholder': 'Montant'}),
+            'category': forms.TextInput(attrs={'class': 'form-control',
+                                               'placeholder': 'Catégorie'}),
+            'account': forms.TextInput(attrs={'class': 'form-control',
+                                              'placeholder': 'Compte'}),
         }

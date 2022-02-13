@@ -25,7 +25,7 @@ class Operation(models.Model):
     amount = models.FloatField()
     category = models.ForeignKey(to=Category, on_delete=models.CASCADE)
     account = models.ForeignKey(to=Account, on_delete=models.CASCADE)
-    date_created = models.DateField()
+    date_created = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return f"Withdraw: {self.amount} : {self.date_created}"
