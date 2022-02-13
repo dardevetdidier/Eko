@@ -86,9 +86,9 @@ h1 {
     color: white;
 }
 
-.navbar-toggler {
-    color: black;
-    background-color: white;
+.navbar-toggler-icon {
+    color: chocolate;
+
 }
 
 /* BUDGET SNIPPET */
@@ -108,7 +108,7 @@ h1 {
 
 }
 .budget-header{
-    background-color: chocolate;
+    background-color: slategrey;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -129,4 +129,29 @@ h1 {
     font-size: 0.8em;
     margin: 0;
 }
+
+.col-amount {
+    text-align: right;
+}
+
+.table-headers {
+    text-align: center;
+}
+
+/* ACCOUNTS */
+.create-account-button-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 3em 10em;
+}
+.account-card-body {
+    padding: 3% 30%;
+}
+
+/* MODAL ACCOUNT */
+.modal-header {
+    background-color: slategrey;
+    color: white;
+}
+
 

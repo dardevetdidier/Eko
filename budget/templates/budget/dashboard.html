@@ -4,12 +4,11 @@
 
     <div class="budgets-content">
         <div class="row justify-content-around">
-            <div class="budget-col col-lg-6">
-                {% include 'budget/budget.html' %}
-            </div>
-            <div class="budget-col col-lg-6">
-                {% include 'budget/budget.html' %}
-            </div>
+            {% for account in accounts %}
+                <div class="budget-col col-lg-6">
+                    {% include 'budget/budget.html' %}
+                </div>
+            {% endfor %}
         </div>
     </div>
 

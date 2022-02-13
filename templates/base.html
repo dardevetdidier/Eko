@@ -24,20 +24,17 @@
     <header>
         <div class="nav-content">
 
-                <nav class="navbar navbar-expand-lg">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                     <div class="nav-fluid container-fluid">
                         <a class="navbar-brand" href="{% url 'dashboard' %}">EKO</a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <button class="nav-hamb navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                           <span class="navbar-toggler-icon"></span>
                         </button>
 
                         <div class="collapse navbar-collapse" id="navbarNavDropdown">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Nouveau Compte</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Supprimer Compte</a>
+                                    <a class="nav-link" href="{% url 'accounts' %}">Comptes</a>
                                 </li>
 
                                 {% if user.is_authenticated %}

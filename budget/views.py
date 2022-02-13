@@ -1,9 +1,10 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
-from .forms import LoginForm
+from .forms import LoginForm, CreateAccountForm
+from .models import Account
 
 
 def index(request):
@@ -28,7 +29,6 @@ def index(request):
             return render(request, 'budget/index.html', context={'form': login_form})
 
 
-@login_required
 def logout_user(request):
     """
     Logout user and return to login page
@@ -39,7 +39,33 @@ def logout_user(request):
 
 
 @login_required(login_url='index')
-def budget(request):
-    return render(request, 'budget/dashboard.html')
+def dashboard(request):
+    accounts = Account.objects.all()
+    context = {'accounts': accounts}
+    return render(request, 'budget/dashboard.html', context=context)
 
 
+@login_required(login_url='index')
+def view_accounts(request):
+
+    if request.method == 'POST':
+        create_account_form = CreateAccountForm(request.POST)
+
+        if create_account_form.is_valid():
+            create_account_form.save()
+        return redirect('dashboard')
+
+    else:
+        accounts = Account.objects.all()
+
+        create_account_form = CreateAccountForm()
+        context = {'accounts': accounts,
+                   'create_account_form': create_account_form}
+
+    return render(request, 'budget/accounts.html', context=context)
+
+
+def delete_account(request, pk):
+    account = get_object_or_404(Account, pk=pk)
+    context = {'account': account}
+    return render(request, 'budget/accounts.html', context=context)
