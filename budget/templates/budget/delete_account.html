@@ -2,17 +2,16 @@
 
 {% block content %}
     <div class="create-account-button-container container">
-        <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Créer un Compte</button>
-        <a href="{% url 'delete-account' %}" class="btn btn-outline-light">Supprimer un Compte</a>
+        <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#deleteAccount">Choisir un Compte</button>
     </div>
 
-    <!-- Modal CREATE -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+   <!-- Modal DELETE -->
+    <div class="modal fade" id="deleteAccount" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="deleteAccount" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">NOUVEAU COMPTE</h5>
+                    <h5 class="modal-title" id="deleteAccountLabel">SUPPRIMER LE COMPTE</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -20,25 +19,22 @@
                         <form method="post">
                             {% csrf_token %}
                             <div class="mb-3">
-                                {{ create_account_form.name }}
-                            </div>
-
-                            <div class="mb-3">
-                                {{ create_account_form.balance }}
+                                {{ delete_form.name }}
                             </div>
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Annuler</button>
-                                <button type="submit" class="btn btn-success">Créer Compte</button>
+                                <button type="submit" class="btn btn-danger">Supprimer</button>
                             </div>
                         </form>
                     </div>
                 </div>
 
+
+
             </div>
         </div>
     </div>
-
 
     <!-- TABLE -->
 

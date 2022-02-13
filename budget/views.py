@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 
-from .forms import LoginForm, CreateAccountForm
+from .forms import LoginForm, CreateAccountForm, DeleteForm
 from .models import Account
 
 
@@ -65,7 +65,15 @@ def view_accounts(request):
     return render(request, 'budget/accounts.html', context=context)
 
 
-def delete_account(request, pk):
-    account = get_object_or_404(Account, pk=pk)
-    context = {'account': account}
-    return render(request, 'budget/accounts.html', context=context)
+def delete_account(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        account = Account.objects.filter(name__exact=name)
+        account.delete()
+        return redirect("accounts")
+    else:
+        delete_form = DeleteForm()
+        accounts = Account.objects.all()
+    context = {'delete_form': delete_form,
+               'accounts': accounts}
+    return render(request, 'budget/delete_account.html', context=context)

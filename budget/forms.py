@@ -30,11 +30,6 @@ class CreateAccountForm(forms.ModelForm):
             'balance'
         ]
 
-        labels = {
-            'name': 'Nom du compte',
-            'balance': 'Solde de départ'
-        }
-
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control',
                                            'placeholder': 'Nom du compte'
@@ -42,4 +37,15 @@ class CreateAccountForm(forms.ModelForm):
             'balance': forms.NumberInput(attrs={'class': 'form-control',
                                                 'placeholder': 'Solde de départ'
                                                 })
+        }
+
+
+class DeleteForm(forms.ModelForm):
+    class Meta:
+        model = Account
+        fields = ['name', ]
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control',
+                                           'placeholder': 'Nom du compte à supprimer'})
         }
