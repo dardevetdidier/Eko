@@ -9,5 +9,6 @@ urlpatterns = [
     path('accounts/', views.view_accounts, name='accounts'),
     path('delete-account/', views.delete_account, name='delete-account'),
     path('detail-operation/<str:pk>/', views.detail_operation, name='detail-operation'),
-    path('delete-operation/<str:pk>/', views.delete_operation, name='delete-operation')
+    path('delete-operation/<str:pk>/', views.delete_operation, name='delete-operation'),
+    path('categories/', views.view_categories, name='categories'),
 ]

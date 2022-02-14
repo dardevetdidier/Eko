@@ -69,3 +69,14 @@ class CreateOperationForm(forms.ModelForm):
             'category': forms.Select(attrs={'class': 'form-select'}),
             'account': forms.Select(attrs={'class': 'form-select'}),
         }
+
+
+class CreateCategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ['name', ]
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control',
+                                           'placeholder': 'Nom de la Catégorie'})
+        }

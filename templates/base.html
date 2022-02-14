@@ -38,6 +38,10 @@
                                     <a class="nav-link" href="{% url 'accounts' %}">Comptes</a>
                                 </li>
 
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'categories' %}">Catégories</a>
+                                </li>
+
                                 {% if user.is_authenticated %}
                                     <li class="nav-item">
                                         <a href="{% url 'logout' %}" class="nav-link">Se déconnecter</a>

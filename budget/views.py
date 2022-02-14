@@ -3,8 +3,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 
-from .forms import LoginForm, CreateAccountForm, DeleteForm, CreateOperationForm
-from .models import Account, Operation
+from .forms import LoginForm, CreateAccountForm, DeleteForm, CreateOperationForm, CreateCategoryForm
+from .models import Account, Operation, Category
 
 
 def index(request):
@@ -62,7 +62,6 @@ def dashboard(request):
 
 @login_required(login_url='index')
 def view_accounts(request):
-
     if request.method == 'POST':
         create_account_form = CreateAccountForm(request.POST)
 
@@ -111,3 +110,19 @@ def delete_operation(request, pk):
 
     else:
         return render(request, 'budget/delete-operation.html', context={'operation': operation})
+
+
+def view_categories(request):
+    if request.method == 'POST':
+        create_category_form = CreateCategoryForm(request.POST)
+        if create_category_form.is_valid():
+            create_category_form.save()
+        return redirect('categories')
+
+    else:
+        create_category_form = CreateCategoryForm()
+        categories = Category.objects.all()
+        context = {'categories': categories,
+                   'create_category_form': create_category_form}
+
+    return render(request, 'budget/categories.html', context=context)
