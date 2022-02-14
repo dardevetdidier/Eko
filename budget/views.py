@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 
 from .forms import LoginForm, CreateAccountForm, DeleteForm, CreateOperationForm
-from .models import Account
+from .models import Account, Operation
 
 
 def index(request):
@@ -40,9 +40,24 @@ def logout_user(request):
 
 @login_required(login_url='index')
 def dashboard(request):
+    operations = Operation.objects.all()[:6]
     accounts = Account.objects.all()
-    context = {'accounts': accounts}
-    return render(request, 'budget/dashboard.html', context=context)
+    if request.method == 'POST':
+        create_operation_form = CreateOperationForm(request.POST)
+        if create_operation_form.is_valid():
+            operation = create_operation_form.save(commit=False)
+            account = operation.account
+            account.balance -= operation.amount
+            account.save()
+            operation.save()
+
+        return redirect('dashboard')
+    else:
+        create_operation_form = CreateOperationForm()
+        context = {'accounts': accounts,
+                   'operations': operations,
+                   'create_operation_form': create_operation_form}
+        return render(request, 'budget/dashboard.html', context=context)
 
 
 @login_required(login_url='index')
@@ -79,18 +94,18 @@ def delete_account(request):
     return render(request, 'budget/delete_account.html', context=context)
 
 
-def create_operation(request):
-    if request.method == 'POST':
-        create_operation_form = CreateOperationForm(request.POST)
-        if create_operation_form.is_valid():
-            operation = create_operation_form.save(commit=False)
-            account = get_object_or_404(Account, name=request.POST.get('name'))
-            operation.account = account
-            operation.save()
-    else:
-        create_operation_form = CreateOperationForm()
-
-    context = {
-        'create_operation_form': create_operation_form
-    }
-    return render(request, 'budget/dashboard.html', context=context)
+# def create_operation(request):
+#     if request.method == 'POST':
+#         create_operation_form = CreateOperationForm(request.POST)
+#         if create_operation_form.is_valid():
+#             operation = create_operation_form.save(commit=False)
+#             account = get_object_or_404(Account, name=request.POST.get('name'))
+#             operation.account = account
+#             operation.save()
+#         return redirect('dashboard')
+#     else:
+#         create_operation_form = CreateOperationForm()
+#         context = {
+#             'create_operation_form': create_operation_form
+#         }
+#     return render(request, 'budget/dashboard.html', context=context)

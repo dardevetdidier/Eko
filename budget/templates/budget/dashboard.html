@@ -13,8 +13,55 @@
     </div>
 
 
-    <div class="add-operation-button">
-        <a href="#" class="btn btn-outline-light px-5">Ajouter une opération</a>
+{#    <div class="add-operation-button">#}
+{#        <a href="#" class="btn btn-outline-light px-5">Ajouter une opération</a>#}
+{#    </div>#}
+
+    <div class="create-account-button-container container">
+        <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Ajouter Opération</button>
+    </div>
+
+    <!-- Modal CREATE -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">NOUVELLE OPERATION</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                {{ create_operation_form.description }}
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Catégorie</label>
+                                {{ create_operation_form.category }}
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Compte</label>
+                                {{ create_operation_form.account }}
+                            </div>
+
+                            <div class="mb-3">
+                                {{ create_operation_form.amount }}
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Annuler</button>
+                                <button type="submit" class="btn btn-success">Créer Opération</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 
 

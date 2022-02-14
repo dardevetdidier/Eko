@@ -1,7 +1,7 @@
 from django import forms
 
 from django.contrib.auth.models import User
-from .models import Account, Operation
+from .models import Account, Operation, Category
 
 
 class LoginForm(forms.ModelForm):
@@ -66,8 +66,6 @@ class CreateOperationForm(forms.ModelForm):
                                                   'placeholder': 'Description'}),
             'amount': forms.NumberInput(attrs={'class': 'form-control',
                                                'placeholder': 'Montant'}),
-            'category': forms.TextInput(attrs={'class': 'form-control',
-                                               'placeholder': 'Catégorie'}),
-            'account': forms.TextInput(attrs={'class': 'form-control',
-                                              'placeholder': 'Compte'}),
+            'category': forms.Select(attrs={'class': 'form-select'}),
+            'account': forms.Select(attrs={'class': 'form-select'}),
         }
