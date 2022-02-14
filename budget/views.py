@@ -126,3 +126,13 @@ def view_categories(request):
                    'create_category_form': create_category_form}
 
     return render(request, 'budget/categories.html', context=context)
+
+
+def delete_category(request, pk):
+    category = get_object_or_404(Category, pk=pk)
+    if request.method == 'POST':
+        category.delete()
+        return redirect('categories')
+    else:
+        return render(request, 'budget/delete_category.html', context={'category': category})
+

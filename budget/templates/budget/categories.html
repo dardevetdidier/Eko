@@ -20,7 +20,7 @@
             {% for  category in categories %}
                 <tr>
                     <td class="col-center">{{ category.name }}</td>
-                    <td class="col-center"><a href="#"><i class="bi bi-trash"></i></a></td>
+                    <td class="col-center"><a type="button" href="{% url 'delete-category' category.id %}"><i class="bi bi-trash"></i></a></td>
                 </tr>
             {% endfor %}
 
@@ -61,4 +61,7 @@
             </div>
         </div>
     </form>
+
+
+
 {% endblock %}
