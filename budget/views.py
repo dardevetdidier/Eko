@@ -94,18 +94,7 @@ def delete_account(request):
     return render(request, 'budget/delete_account.html', context=context)
 
 
-# def create_operation(request):
-#     if request.method == 'POST':
-#         create_operation_form = CreateOperationForm(request.POST)
-#         if create_operation_form.is_valid():
-#             operation = create_operation_form.save(commit=False)
-#             account = get_object_or_404(Account, name=request.POST.get('name'))
-#             operation.account = account
-#             operation.save()
-#         return redirect('dashboard')
-#     else:
-#         create_operation_form = CreateOperationForm()
-#         context = {
-#             'create_operation_form': create_operation_form
-#         }
-#     return render(request, 'budget/dashboard.html', context=context)
+def detail_operation(request, pk):
+    operation = get_object_or_404(Operation, pk=pk)
+    context = {'operation': operation}
+    return render(request, 'budget/operation-detail.html', context=context)

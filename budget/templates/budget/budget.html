@@ -19,7 +19,7 @@
   <tbody>
     {% for operation in operations %}
         <tr>
-            <a href="#"><td>{{ operation.date_created}}</td></a>
+            <td><a class="detail-operation-link" href="{% url 'detail-operation' pk=operation.id %}">{{ operation.date_created}}</a></td>
           <td class="col-amount">{{ operation.description}}</td>
           <td class="col-amount">{{ operation.category }}</td>
           <td class="col-amount">{{ operation.amount }} €</td>

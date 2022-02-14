@@ -161,3 +161,13 @@ h1 {
     justify-content: center;
 }
 
+
+.detail-operation-link {
+    color: chocolate;
+
+}
+
+.detail-operation-link:hover {
+    color: white
+}
+
