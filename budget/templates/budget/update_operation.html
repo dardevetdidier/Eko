@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+        <div class="create-account-button-container container">
+            <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Modifier Opération</button>
+
+        </div>
+
+    <!-- TABLE UPDATE -->
+    <div class="update-operation-table">
+        <div class="budget-card card" style="width: 50rem;">
+            <div class="budget-card-body card-body">
+                <table class=" budget-table table table-striped table-bordered table-dark">
+                    <thead>
+                    <tr>
+                        <td class="table-headers">DATE</td>
+                        <td class="table-headers">DESCRIPTION</td>
+                        <td class="table-headers">CATEGORIE</td>
+                        <td class="table-headers">MONTANT</td>
+                        <td class="table-headers">SUPPRIMER</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {% for operation in account.operations_account.all %}
+                        <tr>
+                            <td class="col-center"><a class="detail-operation-link"
+                                                      href="{% url 'update-operation' pk=operation.id %}">{{ operation.date_created }}</a>
+                            </td>
+                            <td class="col-amount">{{ operation.description }}</td>
+                            <td class="col-amount">{{ operation.category }}</td>
+                            <td class="col-amount">{{ operation.amount }} €</td>
+                            <td class="col-center"><a type="button" href="{% url 'delete-operation' operation.id %}"><i
+                                    class="bi bi-trash"></i></a></td>
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <a href="{% url 'dashboard' %}" class="back-btn btn btn-outline-light" type="button">Retour</a>
+    </div>
+    <!-- Modal UPDATE -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">MODIFIER OPERATION</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <form action="{% url 'update-operation' operation.id %}" method="post">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                {{ update_op_form.description }}
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Catégorie</label>
+                                {{ update_op_form.category }}
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Compte</label>
+                                {{ update_op_form.account }}
+                            </div>
+
+                            <div class="mb-3">
+                                {{ update_op_form.amount }}
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Annuler</button>
+                                <button type="submit" class="btn btn-success">Modifier Opération</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

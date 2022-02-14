@@ -19,10 +19,10 @@
           </thead>
           <tbody>
 
-          {% for operation in operations %}
+          {% for operation in account.operations_account.all %}
               <tr>
                   <td class="col-center"><a class="detail-operation-link"
-                         href="{% url 'detail-operation' pk=operation.id %}">{{ operation.date_created }}</a></td>
+                         href="{% url 'update-operation' pk=operation.id %}">{{ operation.date_created }}</a></td>
                   <td class="col-amount">{{ operation.description }}</td>
                   <td class="col-amount">{{ operation.category }}</td>
                   <td class="col-amount">{{ operation.amount }} €</td>

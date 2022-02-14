@@ -23,8 +23,8 @@ class Account(models.Model):
 class Operation(models.Model):
     description = models.CharField(max_length=150)
     amount = models.FloatField()
-    category = models.ForeignKey(to=Category, on_delete=models.CASCADE)
-    account = models.ForeignKey(to=Account, on_delete=models.CASCADE)
+    category = models.ForeignKey(to=Category, on_delete=models.CASCADE, related_name='operations_category')
+    account = models.ForeignKey(to=Account, on_delete=models.CASCADE, related_name='operations_account')
     date_created = models.DateField(auto_now_add=True)
 
     def __str__(self):

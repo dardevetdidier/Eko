@@ -30,6 +30,7 @@ def index(request):
             return render(request, 'budget/index.html', context={'form': login_form})
 
 
+@login_required(login_url='index')
 def logout_user(request):
     """
     Logout user and return to login page
@@ -48,7 +49,7 @@ def dashboard(request):
         if create_operation_form.is_valid():
             operation = create_operation_form.save(commit=False)
             account = operation.account
-            account.balance -= operation.amount
+            account.balance += operation.amount
             account.save()
             operation.save()
 
@@ -80,6 +81,7 @@ def view_accounts(request):
     return render(request, 'budget/accounts.html', context=context)
 
 
+@login_required(login_url='index')
 def delete_account(request):
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -94,12 +96,33 @@ def delete_account(request):
     return render(request, 'budget/delete_account.html', context=context)
 
 
-def detail_operation(request, pk):
+@login_required(login_url='index')
+def update_operation(request, pk):
     operation = get_object_or_404(Operation, pk=pk)
-    context = {'operation': operation}
-    return render(request, 'budget/operation-detail.html', context=context)
+    update_operation_form = CreateOperationForm(instance=operation)
+    amount = operation.amount
+    account = operation.account
+
+    if request.method == 'POST':
+        update_operation_form = CreateOperationForm(request.POST, instance=operation)
+        if update_operation_form.is_valid():
+            update_operation_form.save()
+            if update_operation_form.cleaned_data['amount'] != amount:
+                difference = update_operation_form.cleaned_data['amount'] - amount
+                account.balance += difference
+                account.save()
+        return redirect('dashboard')
+    else:
+
+        context = {
+            'update_op_form': update_operation_form,
+            'operation': operation,
+            'account': account
+        }
+        return render(request, 'budget/update_operation.html', context=context)
 
 
+@login_required(login_url='index')
 def delete_operation(request, pk):
     operation = get_object_or_404(Operation, pk=pk)
     if request.method == 'POST':
@@ -113,6 +136,7 @@ def delete_operation(request, pk):
         return render(request, 'budget/delete-operation.html', context={'operation': operation})
 
 
+@login_required(login_url='index')
 def view_categories(request):
     if request.method == 'POST':
         create_category_form = CreateCategoryForm(request.POST)
@@ -129,6 +153,7 @@ def view_categories(request):
     return render(request, 'budget/categories.html', context=context)
 
 
+@login_required(login_url='index')
 def delete_category(request, pk):
     category = get_object_or_404(Category, pk=pk)
     if request.method == 'POST':
