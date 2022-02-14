@@ -98,3 +98,16 @@ def detail_operation(request, pk):
     operation = get_object_or_404(Operation, pk=pk)
     context = {'operation': operation}
     return render(request, 'budget/operation-detail.html', context=context)
+
+
+def delete_operation(request, pk):
+    operation = get_object_or_404(Operation, pk=pk)
+    if request.method == 'POST':
+        account = operation.account
+        account.balance += operation.amount
+        account.save()
+        operation.delete()
+        return redirect('dashboard')
+
+    else:
+        return render(request, 'budget/delete-operation.html', context={'operation': operation})

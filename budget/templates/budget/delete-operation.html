@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+    <div class="confirm-del-op-content">
+        <p class="confirm-del-op">Etes vous sur de supprimer cette opération ?</p>
+
+        <form action="{% url 'delete-operation' operation.id %}" method="post">
+            {% csrf_token %}
+            <a class="btn btn-warning" href="{% url 'dashboard' %}">Annuler</a>
+            <input class="btn btn-danger" type="submit">
+        </form>
+    </div>
+{% endblock %}

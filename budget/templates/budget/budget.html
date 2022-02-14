@@ -7,28 +7,33 @@
   </div>
 
   <div class="budget-card-body card-body">
-    <table class=" budget-table table table-striped table-bordered table-dark">
-  <thead>
-    <tr>
-      <td class="table-headers">DATE</td>
-      <td class="table-headers">DESCRIPTION</td>
-      <td class="table-headers">CATEGORIE</td>
-      <td class="table-headers">MONTANT</td>
-    </tr>
-  </thead>
-  <tbody>
-    {% for operation in operations %}
-        <tr>
-            <td><a class="detail-operation-link" href="{% url 'detail-operation' pk=operation.id %}">{{ operation.date_created}}</a></td>
-          <td class="col-amount">{{ operation.description}}</td>
-          <td class="col-amount">{{ operation.category }}</td>
-          <td class="col-amount">{{ operation.amount }} €</td>
-        </tr>
-    {% endfor %}
+      <table class=" budget-table table table-striped table-bordered table-dark">
+          <thead>
+          <tr>
+              <td class="table-headers">DATE</td>
+              <td class="table-headers">DESCRIPTION</td>
+              <td class="table-headers">CATEGORIE</td>
+              <td class="table-headers">MONTANT</td>
+              <td class="table-headers">SUPPRIMER</td>
+          </tr>
+          </thead>
+          <tbody>
 
-  </tbody>
-</table>
+          {% for operation in operations %}
+              <tr>
+                  <td class="col-center"><a class="detail-operation-link"
+                         href="{% url 'detail-operation' pk=operation.id %}">{{ operation.date_created }}</a></td>
+                  <td class="col-amount">{{ operation.description }}</td>
+                  <td class="col-amount">{{ operation.category }}</td>
+                  <td class="col-amount">{{ operation.amount }} €</td>
+                  <td class="col-center"><a type="button" href="{% url 'delete-operation' operation.id %}"><i class="bi bi-trash"></i></a></td>
+              </tr>
+          {% endfor %}
+
+          </tbody>
+      </table>
 
   </div>
 </div>
+
 
