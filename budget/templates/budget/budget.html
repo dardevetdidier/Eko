@@ -23,8 +23,8 @@
               <tr>
                   <td class="col-center"><a class="detail-operation-link"
                          href="{% url 'update-operation' pk=operation.id %}">{{ operation.date_created }}</a></td>
-                  <td class="col-amount">{{ operation.description }}</td>
-                  <td class="col-amount">{{ operation.category }}</td>
+                  <td>{{ operation.description }}</td>
+                  <td>{{ operation.category }}</td>
                   <td class="col-amount">{{ operation.amount }} €</td>
                   <td class="col-center"><a type="button" href="{% url 'delete-operation' operation.id %}"><i class="bi bi-trash"></i></a></td>
               </tr>
