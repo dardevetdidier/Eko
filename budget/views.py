@@ -22,6 +22,7 @@ def index(request):
             return redirect('dashboard')
         else:
             messages.info(request, "Erreur dans le nom d'utilisateur et/ou le mot de passe")
+            return redirect('dashboard')
     if request.method == 'GET':
         if request.user.is_authenticated:
             return redirect('dashboard')
