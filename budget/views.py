@@ -42,6 +42,9 @@ def logout_user(request):
 
 @login_required(login_url='index')
 def dashboard(request):
+    """
+    Display dashboard and allows to create a new operation
+    """
     operations = Operation.objects.all()[:6]
     accounts = Account.objects.all()
     if request.method == 'POST':
@@ -64,6 +67,9 @@ def dashboard(request):
 
 @login_required(login_url='index')
 def view_accounts(request):
+    """
+    Display all accounts. Allows to create a new account
+    """
     if request.method == 'POST':
         create_account_form = CreateAccountForm(request.POST)
 
@@ -83,6 +89,9 @@ def view_accounts(request):
 
 @login_required(login_url='index')
 def delete_account(request):
+    """
+    Allows to delete an account
+    """
     if request.method == 'POST':
         name = request.POST.get('name')
         account = Account.objects.filter(name__exact=name)
@@ -98,6 +107,9 @@ def delete_account(request):
 
 @login_required(login_url='index')
 def update_operation(request, pk):
+    """
+    Allows to modify an operation
+    """
     operation = get_object_or_404(Operation, pk=pk)
     update_operation_form = CreateOperationForm(instance=operation)
     amount = operation.amount
@@ -124,6 +136,9 @@ def update_operation(request, pk):
 
 @login_required(login_url='index')
 def delete_operation(request, pk):
+    """
+    Allows to delete an operation
+    """
     operation = get_object_or_404(Operation, pk=pk)
     if request.method == 'POST':
         account = operation.account
@@ -138,6 +153,9 @@ def delete_operation(request, pk):
 
 @login_required(login_url='index')
 def view_categories(request):
+    """
+    Display all categories of operations. Allows to create a new categoey
+    """
     if request.method == 'POST':
         create_category_form = CreateCategoryForm(request.POST)
         if create_category_form.is_valid():
@@ -155,6 +173,9 @@ def view_categories(request):
 
 @login_required(login_url='index')
 def delete_category(request, pk):
+    """
+    Delete a category
+    """
     category = get_object_or_404(Category, pk=pk)
     if request.method == 'POST':
         category.delete()
