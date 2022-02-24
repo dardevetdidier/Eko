@@ -136,6 +136,13 @@ h1 {
 
 .table-headers {
     text-align: center;
+    font-size: 1.2em;
+}
+.table-headers-del {
+    width: 50px;
+}
+.table-headers-cat {
+    width: 400px;
 }
 
 /* ACCOUNTS */
@@ -220,5 +227,11 @@ a .bi-trash {
 .back-btn {
     padding: 0.3em 3em;
     margin-top: 2em;
+}
+
+/* Delete category */
+
+.confirm-del-op-content .btn-warning {
+    margin-right: 40px;
 }
 
