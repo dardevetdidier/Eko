@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+
 class Category(models.Model):
     name = models.CharField(max_length=150)
 
@@ -21,11 +22,20 @@ class Account(models.Model):
 
 
 class Operation(models.Model):
+    OPERATION_TYPES = [
+        ('Withdraw', 'Débit'),
+        ('Credit', 'Crédit')
+    ]
+
+    operation_type = models.CharField(max_length=8, choices=OPERATION_TYPES, default="Withdraw")
     description = models.CharField(max_length=150)
     amount = models.FloatField()
     category = models.ForeignKey(to=Category, on_delete=models.CASCADE, related_name='operations_category')
     account = models.ForeignKey(to=Account, on_delete=models.CASCADE, related_name='operations_account')
-    date_created = models.DateField(auto_now_add=True)
+    date_created = models.DateField(blank=True)
+
+    class Meta:
+        ordering = ['-date_created']
 
     def __str__(self):
         return f"Withdraw: {self.amount} : {self.date_created}"

@@ -1,7 +1,10 @@
+from datetime import timedelta
+
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
+from django.utils import timezone
 
 from .forms import LoginForm, CreateAccountForm, DeleteForm, CreateOperationForm, CreateCategoryForm
 from .models import Account, Operation, Category
@@ -45,14 +48,20 @@ def dashboard(request):
     """
     Display dashboard and allows to create a new operation
     """
-    operations = Operation.objects.all()[:6]
+    today = timezone.now().date()
+    date_display = today - timedelta(days=15)
+    operations = Operation.objects.filter(date_created__gte=date_display).filter(date_created__lte=today)
     accounts = Account.objects.all()
     if request.method == 'POST':
         create_operation_form = CreateOperationForm(request.POST)
         if create_operation_form.is_valid():
             operation = create_operation_form.save(commit=False)
             account = operation.account
-            account.balance += operation.amount
+            if operation.operation_type == "Credit":
+                account.balance += operation.amount
+            else:
+                account.balance -= operation.amount
+
             account.save()
             operation.save()
 
@@ -111,6 +120,7 @@ def update_operation(request, pk):
     Allows to modify an operation
     """
     operation = get_object_or_404(Operation, pk=pk)
+    print(operation.date_created)
     update_operation_form = CreateOperationForm(instance=operation)
     amount = operation.amount
     account = operation.account
@@ -118,10 +128,14 @@ def update_operation(request, pk):
     if request.method == 'POST':
         update_operation_form = CreateOperationForm(request.POST, instance=operation)
         if update_operation_form.is_valid():
+            print("ok")
             update_operation_form.save()
             if update_operation_form.cleaned_data['amount'] != amount:
                 difference = update_operation_form.cleaned_data['amount'] - amount
-                account.balance += difference
+                if operation.operation_type == "Withdraw":
+                    account.balance -= difference
+                else:
+                    account.balance += difference
                 account.save()
         return redirect('dashboard')
     else:
@@ -140,9 +154,13 @@ def delete_operation(request, pk):
     Allows to delete an operation
     """
     operation = get_object_or_404(Operation, pk=pk)
+    print(operation.operation_type)
     if request.method == 'POST':
         account = operation.account
-        account.balance += operation.amount
+        if operation.operation_type == "Withdraw":
+            account.balance += operation.amount
+        elif operation.operation_type == "Credit":
+            account.balance -= operation.amount
         account.save()
         operation.delete()
         return redirect('dashboard')

@@ -24,18 +24,14 @@
                     </thead>
                     <tbody>
 
-                    {% for operation in account.operations_account.all %}
                         <tr>
-                            <td class="col-center"><a class="detail-operation-link"
-                                                      href="{% url 'update-operation' pk=operation.id %}">{{ operation.date_created }}</a>
-                            </td>
+                            <td class="col-center">{{ operation.date_created }}</td>
                             <td>{{ operation.description }}</td>
                             <td>{{ operation.category }}</td>
                             <td class="col-amount">{{ operation.amount }} €</td>
                             <td class="col-center"><a type="button" href="{% url 'delete-operation' operation.id %}"><i
                                     class="bi bi-trash"></i></a></td>
                         </tr>
-                    {% endfor %}
 
                     </tbody>
                 </table>
@@ -57,6 +53,12 @@
                         <form action="{% url 'update-operation' operation.id %}" method="post">
                             {% csrf_token %}
                             <div class="mb-3">
+                                <label class="form-label" >Type d'opération</label>
+                                {{ update_op_form.operation_type }}
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Description</label>
                                 {{ update_op_form.description }}
                             </div>
 
@@ -71,7 +73,14 @@
                             </div>
 
                             <div class="mb-3">
+                                <label class="form-label">Montant</label>
                                 {{ update_op_form.amount }}
+                            </div>
+
+                            <div class="form-date-operation mb-3">
+                                <label class="form-label" for="date_created">Date de l'opération</label>
+                                {{ update_op_form.date_created }}
+{#                                <input type="date" class="form-control" id="date_created" name="date_created">#}
                             </div>
 
                             <div class="modal-footer">

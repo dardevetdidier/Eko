@@ -4,7 +4,7 @@ from .models import Operation, Account, Category
 
 @admin.register(Operation)
 class DepositAdmin(admin.ModelAdmin):
-    list_display = ['description', 'amount', 'category', 'account', 'date_created']
+    list_display = ['operation_type', 'description', 'amount', 'category', 'account', 'date_created']
 
 
 @admin.register(Category)

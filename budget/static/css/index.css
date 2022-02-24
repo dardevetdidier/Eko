@@ -94,18 +94,18 @@ h1 {
 /* BUDGET SNIPPET */
 
 .budgets-content {
-    padding: 2% 2%;
+    padding: 0 2%;
 }
 
 .budget-col {
     display: flex;
     justify-content: center;
+
 }
 
 .budget-card {
     border: 1px solid #181818;
     margin: 1em;
-
 }
 .budget-header{
     background-color: slategrey;
@@ -149,7 +149,7 @@ h1 {
 .create-account-button-container {
     display: flex;
     justify-content: space-around;
-    padding: 3em 10em;
+    padding: 1em 10em;
 }
 .account-card-body {
     padding: 3% 30%;
@@ -178,10 +178,13 @@ h1 {
     justify-content: center;
 }
 
+.form-date-operation {
+    display: flex;
+    flex-direction: column;
+}
 
 .detail-operation-link {
     color: chocolate;
-
 }
 
 .detail-operation-link:hover {
@@ -235,3 +238,9 @@ a .bi-trash {
     margin-right: 40px;
 }
 
+
+/*Expenses Chart */
+
+#expenses-chart {
+    border: 1px solid blue;
+}

@@ -1,8 +1,10 @@
+
+
 <div class="budget-card card" style="width: 50rem;">
 
     <div class="budget-header card-header">
       <p class="budget-name">{{ account.name }}</p>
-      <p class="budget-amount">{{ account.balance }} €</p>
+      <p class="budget-amount">{{ account.balance|floatformat:2 }} €</p>
 
   </div>
 
@@ -19,7 +21,7 @@
           </thead>
           <tbody>
 
-          {% for operation in account.operations_account.all %}
+          {% for operation in account.operations_account.all.filter %}
               <tr>
                   <td class="col-center"><a class="detail-operation-link"
                          href="{% url 'update-operation' pk=operation.id %}">{{ operation.date_created }}</a></td>

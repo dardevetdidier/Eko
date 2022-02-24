@@ -6,6 +6,11 @@
         <h1>DASHBOARD</h1>
     </div>
 
+    {% if accounts %}
+        <div class="create-account-button-container container">
+            <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Ajouter Opération</button>
+        </div>
+    {% endif %}
 
     <div class="budgets-content">
         <div class="row justify-content-around">
@@ -21,14 +26,6 @@
     </div>
 
 
-{#    <div class="add-operation-button">#}
-{#        <a href="#" class="btn btn-outline-light px-5">Ajouter une opération</a>#}
-{#    </div>#}
-    {% if accounts %}
-        <div class="create-account-button-container container">
-            <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Ajouter Opération</button>
-        </div>
-    {% endif %}
     <!-- Modal CREATE -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -43,6 +40,12 @@
                         <form method="post">
                             {% csrf_token %}
                             <div class="mb-3">
+                                <label class="form-label">Type d'opération</label>
+                                {{ create_operation_form.operation_type }}
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Description</label>
                                 {{ create_operation_form.description }}
                             </div>
 
@@ -57,7 +60,14 @@
                             </div>
 
                             <div class="mb-3">
+                                <label class="form-label">Montant</label>
                                 {{ create_operation_form.amount }}
+                            </div>
+
+                            <div class="form-date-operation mb-3">
+                                <label class="form-label" for="date_created">Date de l'opération</label>
+                                <input type="date" class="form-control" id="date_created" name="date_created">
+{#                                {{ create_operation_form.date_created }}#}
                             </div>
 
                             <div class="modal-footer">
@@ -71,6 +81,5 @@
             </div>
         </div>
     </div>
-
 
 {% endblock %}

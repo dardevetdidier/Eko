@@ -55,19 +55,22 @@ class CreateOperationForm(forms.ModelForm):
     class Meta:
         model = Operation
         fields = [
+            'operation_type',
             'description',
             'amount',
             'category',
-            'account'
+            'account',
+            'date_created'
         ]
 
         widgets = {
-            'description': forms.TextInput(attrs={'class': 'form-control',
-                                                  'placeholder': 'Description'}),
-            'amount': forms.NumberInput(attrs={'class': 'form-control',
-                                               'placeholder': 'Montant'}),
+            'operation_type': forms.Select(attrs={'class': 'form-select'}),
+            'description': forms.TextInput(attrs={'class': 'form-control'}),
+            'amount': forms.NumberInput(attrs={'class': 'form-control'}),
             'category': forms.Select(attrs={'class': 'form-select'}),
             'account': forms.Select(attrs={'class': 'form-select'}),
+
+
         }
 
 

@@ -8,7 +8,7 @@
 
         <form action="{% url 'delete-operation' operation.id %}" method="post">
             {% csrf_token %}
-            <a class="btn btn-warning" href="{% url 'dashboard' %}">Annuler</a>
+            <a class="btn btn-warning" href="{% url 'update-operation' operation.id %}">Annuler</a>
             <input class="btn btn-danger" type="submit">
         </form>
     </div>
