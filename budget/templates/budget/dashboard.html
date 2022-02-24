@@ -2,8 +2,16 @@
 
 {% block content %}
 
+    <div class="dashboard-title">
+        <h1>DASHBOARD</h1>
+    </div>
+
+
     <div class="budgets-content">
         <div class="row justify-content-around">
+            {% if not accounts %}
+                <p class="not-accounts-message">Allez dans Comptes pour créer un nouveau compte</p>
+            {% endif %}
             {% for account in accounts %}
                 <div class="budget-col col-lg-6">
                     {% include 'budget/budget.html' %}
@@ -16,11 +24,11 @@
 {#    <div class="add-operation-button">#}
 {#        <a href="#" class="btn btn-outline-light px-5">Ajouter une opération</a>#}
 {#    </div>#}
-
-    <div class="create-account-button-container container">
-        <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Ajouter Opération</button>
-    </div>
-
+    {% if accounts %}
+        <div class="create-account-button-container container">
+            <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Ajouter Opération</button>
+        </div>
+    {% endif %}
     <!-- Modal CREATE -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="staticBackdropLabel" aria-hidden="true">

@@ -3,7 +3,9 @@
 {% block content %}
     <div class="create-account-button-container container">
         <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Créer un Compte</button>
-        <a href="{% url 'delete-account' %}" class="btn btn-outline-light">Supprimer un Compte</a>
+        {% if accounts %}
+            <a href="{% url 'delete-account' %}" class="btn btn-outline-light">Supprimer un Compte</a>
+        {% endif %}
     </div>
 
     <!-- Modal CREATE -->
