@@ -138,19 +138,13 @@ h1 {
     text-align: center;
     font-size: 1.2em;
 }
+
 .table-headers-del {
     width: 50px;
 }
+
 .table-headers-cat {
     width: 400px;
-}
-
-.red {
-    color: red;
-}
-
-.green {
-    color: darkgreen;
 }
 
 /* ACCOUNTS */

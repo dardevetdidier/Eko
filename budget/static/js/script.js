@@ -9,12 +9,9 @@ for (let i = 0; i < amounts.length; i++) {
     let cellAmount = amounts[i];
     let cellType = types[i];
     if (cellType.textContent === "Débit") {
-        console.log("ok");
-        cellAmount.classList.remove("green");
-        cellAmount.classList.add("red");
+        cellAmount.style.color = "red"
     } else {
-        cellAmount.classList.remove("red");
-        cellAmount.classList.add("green");
+        cellAmount.style.color = "green"
     }
 }
 
