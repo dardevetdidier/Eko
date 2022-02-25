@@ -2,17 +2,14 @@
 
     <div class="budget-header card-header">
         <p class="budget-name">{{ account.name }}</p>
-{#        {% if account.balance < 0 %}#}
-{#            <p class="budget-amount red" id="balance">#}
-{#        {% else %}#}
-{#            <p class="budget-amount green">#}
-{#        {% endif %}#}
-{#        {{ account.balance|floatformat:2 }} €</p>#}
+
+        <button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Ajouter Opération</button>
+
         <p class="budget-amount red" id="balance">{{ account.balance|floatformat:2 }} €</p>
-  </div>
+    </div>
 {#table-striped#}
   <div class="budget-card-body card-body">
-      <table class="budget-table table table-bordered table-dark">
+      <table class="budget-table table-striped table table-bordered table-dark">
           <thead>
           <tr>
               <td class="table-headers">DATE</td>

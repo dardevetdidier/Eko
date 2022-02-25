@@ -12,6 +12,7 @@ h1 {
 
 .log{
     background-color: #212121;
+    padding-top: 30vh;
 }
 
 .login-container {
@@ -20,7 +21,7 @@ h1 {
     justify-content: space-between;
     align-items: center;
     background-color: #181818;
-    margin: 5em auto;
+    margin: 0 auto;
     padding: 0 3em;
     width: 25em;
     border-radius: 20px;
@@ -28,7 +29,7 @@ h1 {
 
 .login-title {
     color: grey;
-    margin-top: 1em;
+
     margin-bottom: 1em;
 }
 .log-form {
@@ -55,6 +56,12 @@ h1 {
 }
 
 /* NAV BAR */
+.nav-content {
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 4;
+}
 
 .navbar {
     padding: 0;
@@ -79,10 +86,13 @@ h1 {
 .nav-link {
     color: chocolate;
     margin-right: 2em;
-
 }
 
 .nav-link:hover {
+    color: white;
+}
+
+.nav-link .active {
     color: white;
 }
 
@@ -91,10 +101,23 @@ h1 {
 
 }
 
+
+
 /* BUDGET SNIPPET */
 
+.btn-sm {
+
+    width: 120px;
+
+}
+.btn-sm:hover {
+    background-color: white;
+    color: black;
+    border: none;
+}
+
 .budgets-content {
-    padding: 0 2%;
+    padding: 20vh 2%;
 }
 
 .budget-col {
@@ -122,6 +145,11 @@ h1 {
     color: white;
 }
 
+.budget-amount {
+    width: 4em;
+    padding: 0;
+    font-weight: bold;
+}
 .budget-card-body {
     padding: 0;
 }
@@ -151,7 +179,7 @@ h1 {
 .create-account-button-container {
     display: flex;
     justify-content: space-around;
-    padding: 1em 10em;
+    padding: 20vh 10em 0;
 }
 .account-card-body {
     padding: 3% 30%;
@@ -171,7 +199,7 @@ h1 {
 }
 .dashboard-title {
     display: flex;
-    padding-top: 50px;
+    padding-top: 102px;
     justify-content: center;
 }
 
