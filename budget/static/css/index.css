@@ -100,13 +100,13 @@ h1 {
 .budget-col {
     display: flex;
     justify-content: center;
-
 }
 
 .budget-card {
     border: 1px solid #181818;
     margin: 1em;
 }
+
 .budget-header{
     background-color: slategrey;
     display: flex;
@@ -143,6 +143,14 @@ h1 {
 }
 .table-headers-cat {
     width: 400px;
+}
+
+.negative-balance {
+    color: red;
+}
+
+.positive-balance {
+    color: darkgreen;
 }
 
 /* ACCOUNTS */

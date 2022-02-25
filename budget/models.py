@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-
 class Category(models.Model):
     name = models.CharField(max_length=150)
 
@@ -23,11 +22,11 @@ class Account(models.Model):
 
 class Operation(models.Model):
     OPERATION_TYPES = [
-        ('Withdraw', 'Débit'),
-        ('Credit', 'Crédit')
+        ('Débit', 'Débit'),
+        ('Crédit', 'Crédit')
     ]
 
-    operation_type = models.CharField(max_length=8, choices=OPERATION_TYPES, default="Withdraw")
+    operation_type = models.CharField(max_length=8, choices=OPERATION_TYPES, default="Débit")
     description = models.CharField(max_length=150)
     amount = models.FloatField()
     category = models.ForeignKey(to=Category, on_delete=models.CASCADE, related_name='operations_category')

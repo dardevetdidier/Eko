@@ -57,7 +57,7 @@ def dashboard(request):
         if create_operation_form.is_valid():
             operation = create_operation_form.save(commit=False)
             account = operation.account
-            if operation.operation_type == "Credit":
+            if operation.operation_type == "Crédit":
                 account.balance += operation.amount
             else:
                 account.balance -= operation.amount
@@ -120,7 +120,6 @@ def update_operation(request, pk):
     Allows to modify an operation
     """
     operation = get_object_or_404(Operation, pk=pk)
-    print(operation.date_created)
     update_operation_form = CreateOperationForm(instance=operation)
     amount = operation.amount
     account = operation.account
@@ -132,7 +131,7 @@ def update_operation(request, pk):
             update_operation_form.save()
             if update_operation_form.cleaned_data['amount'] != amount:
                 difference = update_operation_form.cleaned_data['amount'] - amount
-                if operation.operation_type == "Withdraw":
+                if operation.operation_type == "Débit":
                     account.balance -= difference
                 else:
                     account.balance += difference
@@ -157,9 +156,9 @@ def delete_operation(request, pk):
     print(operation.operation_type)
     if request.method == 'POST':
         account = operation.account
-        if operation.operation_type == "Withdraw":
+        if operation.operation_type == "Débit":
             account.balance += operation.amount
-        elif operation.operation_type == "Credit":
+        elif operation.operation_type == "Crédit":
             account.balance -= operation.amount
         account.save()
         operation.delete()
