@@ -2,17 +2,17 @@
 
     <div class="budget-header card-header">
         <p class="budget-name">{{ account.name }}</p>
-        {% if account.balance < 0 %}
-            <p class="budget-amount negative-balance">
-        {% else %}
-            <p class="budget-amount positive-balance">
-        {% endif %}
-        {{ account.balance|floatformat:2 }} €</p>
-
+{#        {% if account.balance < 0 %}#}
+{#            <p class="budget-amount red" id="balance">#}
+{#        {% else %}#}
+{#            <p class="budget-amount green">#}
+{#        {% endif %}#}
+{#        {{ account.balance|floatformat:2 }} €</p>#}
+        <p class="budget-amount red" id="balance">{{ account.balance|floatformat:2 }} €</p>
   </div>
-
+{#table-striped#}
   <div class="budget-card-body card-body">
-      <table class="budget-table table table-striped table-bordered table-dark">
+      <table class="budget-table table table-bordered table-dark">
           <thead>
           <tr>
               <td class="table-headers">DATE</td>
@@ -31,7 +31,7 @@
                   <td>{{ operation.description }}</td>
                   <td>{{ operation.category }}</td>
                   <td class="col-amount">{{ operation.amount }} €</td>
-                  <td class="col-center">{{ operation.operation_type }}</td>
+                  <td class="col-type col-center">{{ operation.operation_type }}</td>
               </tr>
           {% endfor %}
 

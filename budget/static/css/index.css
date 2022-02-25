@@ -145,11 +145,11 @@ h1 {
     width: 400px;
 }
 
-.negative-balance {
+.red {
     color: red;
 }
 
-.positive-balance {
+.green {
     color: darkgreen;
 }
 
