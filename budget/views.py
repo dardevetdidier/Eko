@@ -48,9 +48,9 @@ def dashboard(request):
     """
     Display dashboard and allows to create a new operation
     """
-    today = timezone.now().date()
-    date_display = today - timedelta(days=15)
-    operations = Operation.objects.filter(date_created__gte=date_display).filter(date_created__lte=today)
+    # today = timezone.now().date()
+    # date_display = today - timedelta(days=15)
+
     accounts = Account.objects.all()
     if request.method == 'POST':
         create_operation_form = CreateOperationForm(request.POST)
@@ -69,7 +69,6 @@ def dashboard(request):
     else:
         create_operation_form = CreateOperationForm()
         context = {'accounts': accounts,
-                   'operations': operations,
                    'create_operation_form': create_operation_form}
         return render(request, 'budget/dashboard.html', context=context)
 
