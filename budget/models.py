@@ -37,7 +37,7 @@ class Operation(models.Model):
         ordering = ['-date_created']
 
     def __str__(self):
-        return f"Withdraw: {self.amount} : {self.date_created}"
+        return f"Operation: {self.amount} - Montant: {self.date_created}"
 
 # TODO 1 - register mod
 
