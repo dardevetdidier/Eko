@@ -5,7 +5,7 @@
 
         <div class="create-account-button-container container">
             <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Modifier Opération</button>
-
+            <a href="{% url 'dashboard' %}" class="back-btn btn btn-outline-light" type="button">Retour</a>
         </div>
 
     <!-- TABLE UPDATE -->
@@ -37,8 +37,10 @@
                 </table>
             </div>
         </div>
-        <a href="{% url 'dashboard' %}" class="back-btn btn btn-outline-light" type="button">Retour</a>
+
     </div>
+
+
     <!-- Modal UPDATE -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="staticBackdropLabel" aria-hidden="true">
