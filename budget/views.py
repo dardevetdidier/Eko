@@ -76,20 +76,18 @@ def dashboard(request):
         data_categories = []
         colors_categories = []
 
-        for account in accounts:
-            categories = Category.objects.filter(operations_category__account=account)\
-                .exclude(operations_category__operation_type='Crédit').distinct()
+        categories = Category.objects.exclude(operations_category__operation_type='Crédit').distinct()
 
-            for category in categories:
-                operations = category.operations_category.all()
-                total_by_category = sum([operation.amount for operation in operations])
-                labels_categories.append(category.name)
-                data_categories.append(total_by_category)
-                colors_categories.append(f"hsl({str(randint(0, 360))},{str(randint(0, 100))}%,50%)")
+        for category in categories:
+            operations = category.operations_category.all()
+            total_by_category = sum([operation.amount for operation in operations])
+            labels_categories.append(category.name)
+            data_categories.append(total_by_category)
+            colors_categories.append(f"hsl({str(randint(0, 360))},{str(randint(0, 100))}%,50%)")
 
-            print(f'labels = {labels_categories}')
-            print(f'data = {data_categories}')
-            print(f'colors = {colors_categories}')
+        print(f'labels = {labels_categories}')
+        print(f'data = {data_categories}')
+        print(f'colors = {colors_categories}')
 
         context = {'accounts': accounts,
                    'create_operation_form': create_operation_form,
