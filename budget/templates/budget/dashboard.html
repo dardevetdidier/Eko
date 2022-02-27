@@ -16,6 +16,14 @@
         </div>
     </div>
 
+    <!-- CHART -->
+
+    <div class="row charts">
+        <h1>Statistiques</h1>
+        <div class="col-sm-4 category-chart-content">
+            <canvas id="category-chart" width="400" height="400"></canvas>
+        </div>
+    </div>
 
     <!-- Modal CREATE -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -72,5 +80,34 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+
+    <script>
+        const canvasC = document.getElementById("category-chart");
+        const ctx = canvasC.getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: {{ labels_categories|safe }},
+                datasets: [{
+                    label: 'Dépenses par Catégorie',
+                    data: {{ data_categories|safe }},
+                    backgroundColor: {{ colors_categories|safe }},
+                    borderWidth: 1,
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+
+                }
+            }
+        });
+
+    </script>
+
 {% endblock %}

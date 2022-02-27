@@ -117,7 +117,7 @@ h1 {
 }
 
 .budgets-content {
-    padding: 20vh 2%;
+    padding: 102px 2% 50px;
 }
 
 .budget-col {
@@ -270,6 +270,20 @@ a .bi-trash {
 
 /*Expenses Chart */
 
-#expenses-chart {
-    border: 1px solid blue;
+/*.category-chart-content {*/
+/*    background-color: seagreen;*/
+/*}*/
+
+.charts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#category-chart {
+    background-color: #151515;
+    border: 2px solid chocolate;
+    padding: 30px;
+    margin: 20px 0;
 }
