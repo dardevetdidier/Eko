@@ -47,7 +47,7 @@
 
                                 {% if user.is_authenticated %}
                                     <li class="nav-item">
-                                        <a href="{% url 'logout' %}" class="nav-link">Se déconnecter</a>
+                                        <a href="{% url 'logout' %}" class="nav-link" data-bs-toggle="modal" data-bs-target="#logoutModal">Se déconnecter</a>
                                     </li>
                                 {% endif %}
 
@@ -58,6 +58,26 @@
 
         </div>
     </header>
+
+    <!-- Modal -->
+                <div class="modal fade" id="logoutModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header ">
+                      <h5 class="modal-title " id="logoutModalLabel"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body text-center">
+                        SE DECONNECTER ?
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Annuler</button>
+                          <a href="{% url 'logout' %}"><button type="button" class="btn btn-primary" >Confirmer</button></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<!-- MODAL -->
 
     {% block content %}
 
