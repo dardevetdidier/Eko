@@ -5,7 +5,7 @@
 
 
     <div class="confirm-del-op-content">
-        <p class="confirm-del-op">Etes vous sur de supprimer cette Catégorie ?</p>
+        <p class="confirm-del-op">Supprimer la catégorie "{{ category.name }}" ?</p>
 
         <form action="{% url 'delete-category' category.id %}" method="post">
             {% csrf_token %}

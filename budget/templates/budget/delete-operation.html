@@ -9,7 +9,37 @@
         <form action="{% url 'delete-operation' operation.id %}" method="post">
             {% csrf_token %}
             <a class="btn btn-warning" href="{% url 'update-operation' operation.id %}">Annuler</a>
-            <input class="btn btn-danger" type="submit">
+            <button type="submit" class="btn btn-danger">Supprimer</button>
+{#            <input class="btn btn-danger" type="submit">#}
         </form>
+    </div>
+
+    <!-- TABLE UPDATE -->
+    <div class="update-operation-table">
+        <div class="budget-card card" style="width: 50rem;">
+            <div class="budget-card-body card-body">
+                <table class=" budget-table table table-striped table-bordered table-dark">
+                    <thead>
+                    <tr>
+                        <td class="table-headers">DATE</td>
+                        <td class="table-headers">DESCRIPTION</td>
+                        <td class="table-headers">CATEGORIE</td>
+                        <td class="table-headers">MONTANT</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td class="col-center">{{ operation.date_created }}</td>
+                            <td>{{ operation.description }}</td>
+                            <td>{{ operation.category }}</td>
+                            <td class="col-amount">{{ operation.amount }} €</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
     </div>
 {% endblock %}
