@@ -19,6 +19,10 @@ Work in Progress...
 `$ source venv/Script/activate`
 * Install packages\
 `$ pip install -r requirements.txt`
+* Environment variables
+  * At the root of the project, create a file name `.env`
+  * In `.env` file : `SECRET_KEY=EnterThEDJANGOsecretkeyHERE`
+  
 * Migrations
 `$ python manage.py migrate`
 * Create a superuser
